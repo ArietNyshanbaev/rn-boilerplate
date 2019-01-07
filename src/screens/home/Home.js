@@ -7,10 +7,17 @@ import {
 } from 'react-native';
 
 import { Navigation } from 'react-native-navigation';
+import PropTypes from 'prop-types';
 import React from 'react';
-import { gotoAuth } from '../navigation';
+import { gotoAuth } from './../../navigation';
 
-export default class Home extends React.PureComponent {
+const propTypes = {
+    componentId: PropTypes.string.isRequired,
+    fetchPosts: PropTypes.func.isRequired,
+    posts: PropTypes.array.isRequired
+};
+
+class Home extends React.PureComponent {
     static get options() {
         return {
             topBar: {
@@ -19,6 +26,10 @@ export default class Home extends React.PureComponent {
                 },
             }
         };
+    }
+
+    componentDidMount () {
+        setTimeout(() => this.props.fetchPosts(), 3000);
     }
 
     logout = async () => {
@@ -33,7 +44,7 @@ export default class Home extends React.PureComponent {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Hello from Home screen.</Text>
+                <Text>Hello there are {this.props.posts.length} posts</Text>
                 <Button
                     onPress={this.logout}
                     title="Sign Out"
@@ -52,6 +63,10 @@ export default class Home extends React.PureComponent {
         );
     }
 }
+
+Home.propTypes = propTypes;
+
+export default Home;
 
 const styles = StyleSheet.create({
     container: {

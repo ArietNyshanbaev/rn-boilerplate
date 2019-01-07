@@ -7,7 +7,7 @@ export const gotoMainApp = () => Navigation.setRoot({
             children: [
                 {
                     stack: {
-                       children: [
+                        children: [
                             {
                                 component: {
                                     id: "Home",
@@ -26,7 +26,7 @@ export const gotoMainApp = () => Navigation.setRoot({
                 },
                 {
                     stack: {
-                       children: [
+                        children: [
                             {
                                 component: {
                                     id: "Placeholder",
